@@ -3,6 +3,7 @@
  </style>
 
 
+
 <div class="row">
     <div class="col-md-12">
 <div id="mapid"></div>
@@ -73,7 +74,8 @@
           </div>
           <!-- /.modal-dialog -->
         </div>
-<table class="table table-bordered">
+
+<table id="example2" class="table table-bordered">
   <thead>
     <tr>
       <td>No.</td>
@@ -91,9 +93,38 @@
   </tbody>
 </table>
 <script>
-  // $('.btn-tambah').on('click', function() {
-  //     $("#modal-default").modal('show');
-  // });
+  function lokasi_list()
+{
+    $.ajax({
+      type : 'POST',
+      url:'modules/lokasi_list.php',
+      success:function(response)
+      {
+         if(response == "no_data"){
+           $("tbody#zona_data").empty();
+          $("tbody#zona_data").append("<tr><td colspan='7'><div class='callout callout-danger'>Belum ada data.</div></td></tr>");
+         }
+         else{
+          $("tbody#zona_data").empty();
+          $("tbody#zona_data").append(""+response+"");
+          $('#example2').DataTable({
+              'paging'      : true,
+              'lengthChange': false,
+              'searching'   : true,
+              'ordering'    : false,
+              'info'        : true,
+              'autoWidth'   : false
+            })
+        }
+      },
+      error:function()
+      {
+        alert("Sistem Bermasalah");
+      }
+    });
+  }
+   $(function(){ lokasi_list(); });
+
 
 $(document).ready(function()
 {
@@ -101,8 +132,8 @@ $(document).ready(function()
 
      $('#add').click(function()
      {
-       var jurusan= $(".JURUSAN_ZERO").val();
-       var selectedText = $(".JURUSAN_ZERO option:selected").html();
+      var jurusan= $(".JURUSAN_ZERO").val();
+      var selectedText = $(".JURUSAN_ZERO option:selected").html();
           i++;
           $('#dynamic_field').append('<tr id="row'+i+'">'+
           '<td><input type="hidden" name="JURUSAN_ID['+i+']" value="'+jurusan+'" placeholder="Enter your Name" class="form-control" /><input type="text" name="JURUSAN['+i+']" value="'+selectedText+'" readonly class="form-control" /></td>'+
@@ -184,29 +215,8 @@ var marker;
 }
 })
 
-    function lokasi_list()
-{
-    $.ajax({
-      type : 'POST',
-      url:'modules/lokasi_list.php',
-      success:function(response)
-      {
-         if(response == "no_data"){
-           $("tbody#zona_data").empty();
-          $("tbody#zona_data").append("<tr><td colspan='7'><div class='callout callout-danger'>Belum ada data.</div></td></tr>");
-         }
-         else{
-          $("tbody#zona_data").empty();
-          $("tbody#zona_data").append(""+response+"");
-        }
-      },
-      error:function()
-      {
-        alert("Sistem Bermasalah");
-      }
-    });
-  }
-  $(function(){ lokasi_list(); });
+
+
 
     $('tbody').on('click', 'button#lokasi', function()
 {

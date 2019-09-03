@@ -46,7 +46,7 @@ $session = $_SESSION['logged_in_admin'];
           </div>
           <!-- /.modal-dialog -->
         </div>
-<table class="table table-bordered">
+<table id="example2" class="table table-bordered">
   <thead>
     <tr>
       <td>No.</td>
@@ -116,6 +116,14 @@ $session = $_SESSION['logged_in_admin'];
          else{
           $("tbody#zona_data").empty();
           $("tbody#zona_data").append(""+response+"");
+          $('#example2').DataTable({
+              'paging'      : true,
+              'lengthChange': false,
+              'searching'   : true,
+              'ordering'    : false,
+              'info'        : true,
+              'autoWidth'   : false
+            })
         }
       },
       error:function()

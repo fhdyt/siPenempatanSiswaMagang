@@ -13,7 +13,7 @@ else{
 while($row = mysqli_fetch_array($result))
 {
 $no++;
-	echo "<tr id='lokasi' >";
+	echo "<tr>";
 	echo "<td>".$no."</td>";
   echo "<td>".$row['LOCATION_NAME']."</td>";
   echo "<td>".$row['LOCATION_TOTAL']."/".$row['LOCATION_KUOTA']."</td>";

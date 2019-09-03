@@ -110,7 +110,7 @@ $session = $_SESSION['logged_in_admin'];
           </div>
           <!-- /.modal-dialog -->
         </div>
-<table class="table table-bordered">
+<table id="example2" class="table table-bordered">
   <thead>
     <tr>
       <td>No.</td>
@@ -128,6 +128,9 @@ $session = $_SESSION['logged_in_admin'];
   </tbody>
 </table>
 <script>
+$(function () {
+    
+  })
 	$('.btn-tambah').on('click', function() {
     $(".ID_SISWA").val("");
     $(".nis").val("");
@@ -216,9 +219,10 @@ $session = $_SESSION['logged_in_admin'];
 
   function siswa_list()
 {
+    var form = "?HALAMAN="+$(".halaman").val()+"&POSISI="+$(".posisi").val()
     $.ajax({
       type : 'POST',
-      url:'modules/siswa_list.php',
+      url:'modules/siswa_list.php?'+form,
       success:function(response)
       {
          if(response == "no_data"){
@@ -228,6 +232,14 @@ $session = $_SESSION['logged_in_admin'];
          else{
           $("tbody#zona_data").empty();
           $("tbody#zona_data").append(""+response+"");
+          $('#example2').DataTable({
+              'paging'      : true,
+              'lengthChange': false,
+              'searching'   : true,
+              'ordering'    : false,
+              'info'        : true,
+              'autoWidth'   : false
+            })
         }
       },
       error:function()
@@ -235,6 +247,8 @@ $session = $_SESSION['logged_in_admin'];
         alert("Sistem Bermasalah");
       }
     });
+    
+    
   }
   $(function(){ siswa_list(); });
 
@@ -310,4 +324,6 @@ $("tbody").on("click","a.edit_siswa", function(){
 
 
 })
+
+
 </script>
