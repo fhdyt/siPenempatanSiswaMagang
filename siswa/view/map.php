@@ -49,12 +49,12 @@
 	}).addTo(mymap);
 
 $(function(){
-    var form = 'JURUSAN_ID=<?php echo $row['JURUSAN_ID']; ?>'
+    var form = '?JURUSAN_ID=<?php echo $row['JURUSAN_ID']; ?>'
+    console.log(form)
 	$.ajax({
 			dataType:'json',
 			async:false,
-			url:'modules/tampilmarker.php',
-			data : form,
+			url:'modules/tampilmarker.php'+form+'',
 			success:function(data)
 			{
 				for(i in data){
