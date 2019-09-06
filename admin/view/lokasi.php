@@ -84,8 +84,8 @@
       <td>Alamat</td>
       <td>Username</td>
       <td>Password</td>
-
       <td>Aksi</td>
+	<td></td>
     </tr>
   </thead>
   <tbody id="zona_data">
