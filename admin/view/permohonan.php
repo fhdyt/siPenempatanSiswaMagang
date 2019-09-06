@@ -51,7 +51,7 @@ $session = $_SESSION['logged_in_admin'];
     </tr>
   </thead>
   <tbody id="zona_data">
-
+	<td colspan="20"><center>Loading...</center></td>
   </tbody>
 </table>
 <script>
