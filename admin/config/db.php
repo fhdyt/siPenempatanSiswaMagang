@@ -4,9 +4,9 @@
  */
  
 $databaseHost = 'localhost';
-$databaseName = 'GIS';
-$databaseUsername = 'root';
-$databasePassword = 'fikri';
+$databaseName = 'u218634996_sk';
+$databaseUsername = 'u218634996_user';
+$databasePassword = 'fikrihosting';
  
 $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
  
